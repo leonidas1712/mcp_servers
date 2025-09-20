@@ -11,8 +11,7 @@ logging.basicConfig(
 )
 
 proc = subprocess.Popen(
-    # ["uv", "run", "simple_server.py"],
-    ["uv", "run", "./simple_server"],
+    ["uv", "run", "./fastmcp_server.py"],
     stdin=subprocess.PIPE,
     stdout=subprocess.PIPE,
     text=True

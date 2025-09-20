@@ -25,7 +25,7 @@ async def main():
         input_list = [{"role": "user", "content": "Say hi to Leonidas, and also calculate and say the result of (800+256)*287"}]
         response = openai_client.responses.create(
             model="gpt-4.1",
-            input=input_list,
+            input=input_list, 
             tools=openai_tools
         )
         print(response)
