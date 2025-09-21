@@ -80,7 +80,8 @@ def handle_request(req):
             },
         }
     
-    # this is a no-op but client has to send it
+    # this is a no-op but client has to send it, a proper implementation would track state so clients can't
+    # request before this is done
     elif req["method"] == 'notifications/initialized':
         return None
 
