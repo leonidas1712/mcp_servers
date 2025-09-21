@@ -12,7 +12,7 @@ def greet(name: str) -> str:
     return f"Hi there {name}! This is an MCP greeting."
 
 def calculate(expression: str) -> str:
-    """Evaluate a math expression safely."""
+    """Evaluate a math expression."""
     try:
         result = eval(expression, {"__builtins__": {}})
         return str(result)
