@@ -9,6 +9,9 @@ client = Client("fastmcp_server.py")
 # Run against raw server
 # client = Client("simple_server.py")
 
+# Run against HTTP server
+client = Client("http://127.0.0.1:8000/mcp")
+
 logging.basicConfig(
     stream=sys.stderr,
     level=logging.INFO,
