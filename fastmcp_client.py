@@ -1,9 +1,12 @@
 import asyncio
-from fastmcp import Client, FastMCP
+from fastmcp import Client
 import logging
 import sys
 
+# Run against SDK server
 client = Client("fastmcp_server.py")
+
+# Run against raw server
 # client = Client("simple_server.py")
 
 logging.basicConfig(

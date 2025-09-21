@@ -20,8 +20,7 @@ async def main():
         print("OpenAI formatted tools:", openai_tools)
         print()
         
-        
-
+    
         # step 1: send user query + tools to LLM
         input_list = [{"role": "user", "content": "Say hi to John, and also calculate and say the result of (800+256)*287"}]
         response = openai_client.responses.create(

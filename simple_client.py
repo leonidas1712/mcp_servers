@@ -10,12 +10,21 @@ logging.basicConfig(
     format="CLIENT: [%(levelname)s] %(message)s"
 )
 
+# Run against SDK server
 proc = subprocess.Popen(
     ["uv", "run", "./fastmcp_server.py"],
     stdin=subprocess.PIPE,
     stdout=subprocess.PIPE,
     text=True
 )
+
+# Run against raw_server
+# proc = subprocess.Popen(
+#     ["uv", "run", "./raw_server.py"],
+#     stdin=subprocess.PIPE,
+#     stdout=subprocess.PIPE,
+#     text=True
+# )
 
 def send_msg(msg, label, get_stdout=True):
     global proc
@@ -70,7 +79,7 @@ call_greet = {
     "method": "tools/call",
     "params": {
         "name": "greet",
-        "arguments": {"name": "Leo"}
+        "arguments": {"name": "John"}
     }
 }
 send_msg(call_greet, "Call greet response", True)
