@@ -5,7 +5,7 @@ mcp = FastMCP("My MCP Server")
 @mcp.tool
 def greet(name: str) -> str:
     """Greet someone by name."""
-    return f"Hello, {name}! It's an awesome day to be an ML Engineer, don't you think?"
+    return f"Hi there {name}! This is an MCP greeting."
 
 @mcp.tool
 def calculate(expression: str) -> int | float:

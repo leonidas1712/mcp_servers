@@ -6,7 +6,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 openai_client = OpenAI()
-mcp_client = Client("main.py")  # your MCP server process
+mcp_client = Client("fastmcp_server.py")  # path to executable for MCP server process
 
 async def main():
     async with mcp_client:
@@ -18,28 +18,32 @@ async def main():
         openai_tools = mcp_tools_to_openai(mcp_tools)
         
         print("OpenAI formatted tools:", openai_tools)
+        print()
         
         
 
         # step 1: send user query + tools to LLM
-        input_list = [{"role": "user", "content": "Say hi to Leonidas, and also calculate and say the result of (800+256)*287"}]
+        input_list = [{"role": "user", "content": "Say hi to John, and also calculate and say the result of (800+256)*287"}]
         response = openai_client.responses.create(
             model="gpt-4.1",
             input=input_list, 
             tools=openai_tools
         )
-        print(response)
-
+        
         input_list += response.output
 
         # step 2: check if model wants to call a tool
         for item in response.output:
             if item.type == "function_call":
+                
                 args = json.loads(item.arguments)
+                
+                print(f"Model is calling MCP tool: {item.name}, with args: {args}")
+                
                 # forward to MCP
                 mcp_result = await mcp_client.call_tool(item.name, args)
                 
-                print("MCP result:", mcp_result)
+                print("MCP tool result:", mcp_result)
 
                 # extract string result
                 result_str = (
@@ -55,7 +59,7 @@ async def main():
                     "output": json.dumps({"result": result_str}),
                 })
 
-        print("Final input list:")
+        print("\nFinal input list:")
         for item in input_list:
             print(item)
             
@@ -65,7 +69,7 @@ async def main():
             input=input_list,
             tools=openai_tools,
         )
-        print(final.output_text)
+        print("\nFinal model output:",final.output_text)
 
 def mcp_tools_to_openai(tools):
     return [

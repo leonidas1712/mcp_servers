@@ -3,7 +3,8 @@ from fastmcp import Client, FastMCP
 import logging
 import sys
 
-client = Client("simple_server.py")
+client = Client("fastmcp_server.py")
+# client = Client("simple_server.py")
 
 logging.basicConfig(
     stream=sys.stderr,
@@ -21,7 +22,7 @@ async def main():
         tools = await client.list_tools()
         logging.info(f"Tools: {tools}")
         
-        res = await client.call_tool("greet", {"name": "Leo"})
+        res = await client.call_tool("greet", {"name": "John"})
         if res.content:
             text: str | None = getattr(res.content[0], "text", None)
             if text is not None:
