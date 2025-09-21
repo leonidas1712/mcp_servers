@@ -1,8 +1,9 @@
+# FastAPI server implementing a basic MCP server without FastMCP
+
 from fastapi import FastAPI, Request
-from fastapi.responses import JSONResponse
+from fastapi.responses import JSONResponse, Response
 import uvicorn
 import logging
-import json
 
 app = FastAPI()
 
@@ -24,7 +25,7 @@ async def mcp_endpoint(req: Request):
             "id": req_id,
             "result": {
                 "protocolVersion": PROTOCOL_VERSION,
-                "capabilities": {"tools": {"listChanged": True}},
+                "capabilities": {"tools": {"listChanged": False}},
                 "serverInfo": {"name": "SimpleHTTPServer", "version": "0.1"},
             }
         })
@@ -53,22 +54,28 @@ async def mcp_endpoint(req: Request):
                 ]
             }
         })
-
+    
+    # just the greet tool for simplicity
     elif method == "tools/call":
         args = body["params"]["arguments"]
         name = args.get("name", "stranger")
+        text_result = f"Hello, {name}!"
+
         return JSONResponse({
             "jsonrpc": "2.0",
             "id": req_id,
             "result": {
-                "content": [{"type": "text", "text": f"Hello, {name}!"}],
+                # Free-form content
+                "content": [
+                    {"type": "text", "text": text_result}
+                ],
                 "isError": False,
             }
         })
 
     elif method == "notifications/initialized":
         # Notifications don’t expect a response
-        return JSONResponse(content=None, status_code=204)
+        return Response(status_code=204)
 
     else:
         logging.warning(f"Unknown method: {method}")

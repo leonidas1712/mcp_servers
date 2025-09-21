@@ -10,7 +10,7 @@ client = Client("fastmcp_server.py")
 # client = Client("simple_server.py")
 
 # Run against HTTP server
-client = Client("http://127.0.0.1:8000/mcp")
+# client = Client("http://127.0.0.1:8000/mcp")
 
 logging.basicConfig(
     stream=sys.stderr,
@@ -29,6 +29,7 @@ async def main():
         logging.info(f"Tools: {tools}")
         
         res = await client.call_tool("greet", {"name": "John"})
+
         if res.content:
             text: str | None = getattr(res.content[0], "text", None)
             if text is not None:
