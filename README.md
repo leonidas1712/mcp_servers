@@ -1,6 +1,6 @@
 # MCP Demonstration Scripts
 
-Code examples for the blog article: https://www.leonidasr.com/posts/mcp-from-first-principles
+Code examples for my blog post, [MCP from first principles](https://www.leonidasr.com/posts/mcp-from-first-principles)
 
 These scripts demonstrate MCP (Model Context Protocol) implementation from scratch, progressing from basic function calling to full MCP client-server communication.
 
