@@ -10,6 +10,7 @@ def greet(name: str) -> str:
 @mcp.tool
 def calculate(expression: str) -> int | float:
     """Evaluate a mathematical expression."""
+    # Warning: eval() is unsafe in production - use ast.literal_eval or a proper parser
     return eval(expression)
 
 if __name__ == "__main__":

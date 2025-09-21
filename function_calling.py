@@ -14,6 +14,7 @@ def greet(name: str) -> str:
 def calculate(expression: str) -> str:
     """Evaluate a math expression."""
     try:
+        # Warning: eval() is unsafe in production - use ast.literal_eval or a proper parser
         result = eval(expression, {"__builtins__": {}})
         return str(result)
     except Exception as e:
