@@ -43,11 +43,11 @@ async def main():
                 
                 print("MCP tool result:", mcp_result)
 
-                # extract string result
+                # extract result: try structured_content, then .data, fallback to str of whole object
                 result_str = (
-                    mcp_result.structuredContent.get("result")
-                    if hasattr(mcp_result, "structuredContent")
-                    else str(mcp_result)
+                    mcp_result.structured_content.get("result")
+                    if hasattr(mcp_result, "structured_content") and mcp_result.structured_content
+                    else str(mcp_result.data) if hasattr(mcp_result, "data") else str(mcp_result)
                 )
 
                 # step 3: send tool output back to LLM
