@@ -13,12 +13,11 @@ async def main():
         # fetch tool list from MCP
         mcp_tools = await mcp_client.list_tools()
         
-        print("MCP tools:", mcp_tools)
+        print("MCP tools:", mcp_tools, "\n")
     
         openai_tools = mcp_tools_to_openai(mcp_tools)
         
-        print("OpenAI formatted tools:", openai_tools)
-        print()
+        print("OpenAI formatted tools:", openai_tools, "\n")
         
     
         # step 1: send user query + tools to LLM
