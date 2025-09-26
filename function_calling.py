@@ -26,7 +26,7 @@ TOOLS = {
     "calculate": calculate,
 }
 
-# Define tool call schema for the model to work with, which we map back to our functions if the model calls a tools
+# Define tool call schema for the model to work with, which we map back to our functions if the model calls tools
 openai_tools = [
     {
         "type": "function",
@@ -54,7 +54,7 @@ openai_tools = [
     },
 ]
 
-# --- Run one round of query, tool call, tool reult, response ---
+# --- Run one round of query, tool call, tool result, response ---
 input_list = [
     {"role": "user", "content": "Say hi to John, and also calculate and say the result of (800+256)*287"}
 ]
