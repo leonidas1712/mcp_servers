@@ -14,6 +14,20 @@ These scripts demonstrate MCP (Model Context Protocol) implementation from scrat
 - **mcp_with_ai.py** - Integration of MCP tools with LLM function calling
 - **http_mcp_server.py** - HTTP transport MCP server using FastAPI
 
+## Setup
+
+Before running the scripts, you need to set up your OpenAI API key:
+
+1. Copy the example environment file:
+   ```bash
+   cp .env.example .env
+   ```
+
+2. Add your OpenAI API key to the `.env` file:
+   ```
+   OPENAI_API_KEY=your-api-key-here
+   ```
+
 ## Running the Examples
 
 Run these examples in order following the blog article:
